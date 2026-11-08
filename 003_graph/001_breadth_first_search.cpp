@@ -15,12 +15,12 @@ using namespace std;
 // TC: O(V^2)
 class Solution {
  public:
-  vector<int> breadth_first_search(int source, int vertices, vector<pair<int, int>>& edge) {
-    // Build adjacency matrix
+  vector<int> breadth_first_search(int source, int vertices, vector<pair<int, int>>& edges) {
+    // Build adjacency matrix.
     // SC: O(V^2)
-    // TC: O(V^2) + O(E) for initialization
+    // TC: O(V^2) + O(E) for initialization.
     vector<vector<int>> adjacency_matrix(vertices, vector<int>(vertices));
-    for (auto [u, v] : edge) {
+    for (auto [u, v] : edges) {
       adjacency_matrix[u][v] = adjacency_matrix[v][u] = 1;
     }
 
@@ -58,22 +58,22 @@ class Solution {
 // TC: O(V + E)
 class Solution {
  public:
-  vector<int> breadth_first_search(int source, int vertices, vector<pair<int, int>>& edge) {
+  vector<int> breadth_first_search(int source, int vertices, vector<pair<int, int>>& edges) {
     // Build adjacency list.
     // SC:O(V + 2E)
     // TC: O(V + E)
     vector<vector<int>> adjacency_list(vertices);
-    for (auto [u, v] : edge) {
+    for (auto [u, v] : edges) {
       adjacency_list[u].emplace_back(v);
       adjacency_list[v].emplace_back(u);
     }
 
-    vector<int> ans;  // SC: O(V)
+    vector<int> ans;
 
-    vector<bool> visited(vertices);  // SC: O(V)
+    vector<bool> visited(vertices);
     visited[source] = true;
 
-    queue<int> vertices_to_visit;  // SC: O(V)
+    queue<int> vertices_to_visit;
     vertices_to_visit.push(source);
 
     // Each vertex is inserted into the queue at most once.
